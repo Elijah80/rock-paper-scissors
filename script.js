@@ -1,44 +1,54 @@
-let playerSelection = window.prompt('Please enter Rock, Paper, or Scissors:')
-
 function getComputerChoice() {
 	const gameToken = ['Rock', 'Paper', 'Scissors']
 
-	return gameToken[Math.floor(Math.random() * 3)]
+	return gameToken[Math.floor(Math.random() * gameToken.length)]
 }
 
 function playRound(playerChoice, computerChoice) {
-	let winningMessage = 'You Win! ' + playerChoice + ' beats ' + computerChoice
-	let losingMessage = 'You Lose! ' + computerChoice + ' beats ' + playerChoice
+	const winningMessage = 'You Win! ' + playerChoice + ' beats ' + computerChoice
+	const losingMessage = 'The Computer Wins! ' + computerChoice + ' beats ' + playerChoice
+	const tyingMessage = "It's a Tie! The computer chose " + computerChoice + ' and you chose ' + playerChoice
 
-	if (playerChoice.toLowerCase() !== computerChoice.toLowerCase()) {
-		switch (playerChoice.toLowerCase()) {
-			case 'rock':
-				if (computerChoice === 'Scissors') {
-					console.log(winningMessage)
-				} else if (computerChoice === 'Paper') {
-					console.log(losingMessage)
-				}
-				break
-			case 'paper':
-				if (computerChoice === 'Rock') {
-					console.log(winningMessage)
-				} else if (computerChoice === 'Scissors') {
-					console.log(losingMessage)
-				}
-				break
-			case 'scissors':
-				if (computerChoice === 'Paper') {
-					console.log(winningMessage)
-				} else if (computerChoice === 'Rock') {
-					console.log(losingMessage)
-				}
-				break
-			default:
-				console.log('You Tied! Please play again')
-		}
-	} else {
-    console.log('You Tied! Please play again');
-  }
+	switch (playerChoice.toLowerCase()) {
+		case 'rock':
+			if (computerChoice === 'Scissors') {
+				return winningMessage
+			} else if (computerChoice === 'Paper') {
+				return losingMessage
+			} else {
+				return tyingMessage
+			}
+			break
+		case 'paper':
+			if (computerChoice === 'Rock') {
+				return winningMessage
+			} else if (computerChoice === 'Scissors') {
+				return losingMessage
+			} else {
+				return tyingMessage
+			}
+			break
+		case 'scissors':
+			if (computerChoice === 'Paper') {
+				return winningMessage
+			} else if (computerChoice === 'Rock') {
+				return losingMessage
+			} else {
+				return tyingMessage
+			}
+			break
+		default:
+			return 'You and the computer tied!'
+	}
 }
 
-playRound(playerSelection, getComputerChoice())
+function game() {
+	for (let i = 0; i <= 4; ++i) {
+		let playerSelection = window.prompt('Please enter Rock, Paper, or Scissors:')
+		let computerSelection = getComputerChoice()
+
+		console.log(playRound(playerSelection, computerSelection))
+	}
+}
+
+game()
