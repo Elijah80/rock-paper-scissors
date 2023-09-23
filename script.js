@@ -55,14 +55,10 @@ function createTokenButtons(token) {
 	btn.setAttribute('value', token)
 	btn.textContent = token
 	btn.addEventListener('click', function () {
-		game(btn.value)
+		let computerSelection = getComputerChoice(gameTokens);
+
+		console.log(playRound(btn.value, computerSelection));
 	})
 
 	container.appendChild(btn)
-}
-
-function game(playerSelection) {
-	let computerSelection = getComputerChoice(gameTokens)
-
-	console.log(playRound(playerSelection, computerSelection))
 }
