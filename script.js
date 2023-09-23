@@ -1,6 +1,11 @@
-function getComputerChoice() {
-	const gameToken = ['Rock', 'Paper', 'Scissors']
+const container = document.querySelector('.container')
+const gameTokens = ['Rock', 'Paper', 'Scissors']
 
+gameTokens.forEach(token => {
+	createTokenButtons(token)
+})
+
+function getComputerChoice(gameToken) {
 	return gameToken[Math.floor(Math.random() * gameToken.length)]
 }
 
@@ -9,8 +14,8 @@ function playRound(playerChoice, computerChoice) {
 	const losingMessage = 'The Computer Wins! ' + computerChoice + ' beats ' + playerChoice
 	const tyingMessage = "It's a Tie! The computer chose " + computerChoice + ' and you chose ' + playerChoice
 
-	switch (playerChoice.toLowerCase()) {
-		case 'rock':
+	switch (playerChoice) {
+		case 'Rock':
 			if (computerChoice === 'Scissors') {
 				return winningMessage
 			} else if (computerChoice === 'Paper') {
@@ -19,7 +24,7 @@ function playRound(playerChoice, computerChoice) {
 				return tyingMessage
 			}
 			break
-		case 'paper':
+		case 'Paper':
 			if (computerChoice === 'Rock') {
 				return winningMessage
 			} else if (computerChoice === 'Scissors') {
@@ -28,7 +33,7 @@ function playRound(playerChoice, computerChoice) {
 				return tyingMessage
 			}
 			break
-		case 'scissors':
+		case 'Scissors':
 			if (computerChoice === 'Paper') {
 				return winningMessage
 			} else if (computerChoice === 'Rock') {
@@ -42,13 +47,22 @@ function playRound(playerChoice, computerChoice) {
 	}
 }
 
-function game() {
-	for (let i = 0; i <= 4; ++i) {
-		let playerSelection = window.prompt('Please enter Rock, Paper, or Scissors:')
-		let computerSelection = getComputerChoice()
+function createTokenButtons(token) {
+	const btn = document.createElement('button')
 
-		console.log(playRound(playerSelection, computerSelection))
-	}
+	btn.classList.add('btn')
+	btn.setAttribute('id', token)
+	btn.setAttribute('value', token)
+	btn.textContent = token
+	btn.addEventListener('click', function () {
+		game(btn.value)
+	})
+
+	container.appendChild(btn)
 }
 
-game()
+function game(playerSelection) {
+	let computerSelection = getComputerChoice(gameTokens)
+
+	console.log(playRound(playerSelection, computerSelection))
+}
