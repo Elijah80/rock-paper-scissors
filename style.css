@@ -20,7 +20,7 @@
   justify-content: space-evenly;
   align-items: center;
   width: 50vw;
-  height: 25vh;
+  height: 50%;
 }
 
 .btn {
@@ -39,17 +39,26 @@
   justify-content: space-evenly;
   align-items: center;
   width: 50vw;
-  height: 25vh;
+  height: 50%;
 }
 
-.card {
+.player-card, .cpu-card {
   border: 3px solid rgb(243, 85, 243);
   border-radius: 10px;
   padding: 1rem;
 }
 
-.score {
+#score {
   text-align: center;
   font-size: 2rem;
   font-weight: 900;
+}
+
+.winner {
+  width: 250px;
+  text-align: center;
+}
+
+.final-winner {
+  font-size: 3rem;
 }
